@@ -23,17 +23,11 @@
 </template>
 <script setup lang="ts">
 defineProps<{
-    text: string;
+    text?: string;
 }>();
-
-const tableRef = ref<HTMLElement>();
-const { exportToPdf } = useExportPdf();
 
 async function download() {
     console.log(111);
-    if (tableRef.value) {
-        await exportToPdf("工作经历.pdf", tableRef.value);
-    }
 }
 
 const WorkInformation = ref([

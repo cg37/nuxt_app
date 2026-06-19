@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     css: ["./app/assets/css/main.scss"],
 
     extensions: [".mdx"],
+    debug: true,
     vite: {
         optimizeDeps: {
             include: ["@mdx-js/vue"]

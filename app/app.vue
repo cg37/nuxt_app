@@ -1,11 +1,12 @@
 <template>
     <MDXProvider :components="components">
-        <HelloMdx />
+        <PDFTest />
     </MDXProvider>
 </template>
 <script setup lang="ts">
 import { MDXProvider } from "@mdx-js/vue";
-import HelloMdx from "./posttest.mdx";
+// import HelloMdx from "./resume.mdx";
+import PDFTest from './PDFTest'
 import Table from "./components/Table";
 
 const components = {
