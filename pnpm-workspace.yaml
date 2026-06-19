@@ -1,0 +1,2 @@
+overrides:
+  '@craig37/lint-config': link:../../.local/share/pnpm/global/5/node_modules/@craig37/lint-config
