@@ -19,6 +19,7 @@
         "vue-router": "^5.1.0"
     },
     "devDependencies": {
+        "@ceereals/vue-pdf": "^0.3.1",
         "@commitlint/cli": "^21.0.2",
         "@craig37/lint-config": "link:../../.local/share/pnpm/global/5/node_modules/@craig37/lint-config",
         "@eslint/js": "^10.0.1",
