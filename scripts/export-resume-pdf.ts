@@ -1,6 +1,6 @@
 /**
  * 导出 resume.mdx 为 PDF
- * 
+ *
  * 使用方法:
  * npx tsx scripts/export-resume-pdf.ts
  */
@@ -43,7 +43,7 @@ async function exportResumePDF() {
 
     // 获取 PDF 二进制数据
     const pdfBuffer = Buffer.from(await response.arrayBuffer())
-    
+
     // 保存到项目根目录
     const outputPath = join(projectRoot, 'resume.pdf')
     const { writeFileSync } = await import('fs')
@@ -57,12 +57,12 @@ async function exportResumePDF() {
   } catch (error: any) {
     console.error('\n❌ PDF 导出失败:')
     console.error(`   ${error.message}`)
-    
+
     if (error.cause?.code === 'ECONNREFUSED') {
       console.error('\n💡 提示: 请先启动 Nuxt 开发服务器:')
       console.error('   pnpm dev')
     }
-    
+
     process.exit(1)
   }
 }

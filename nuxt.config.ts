@@ -25,5 +25,10 @@ export default defineNuxtConfig({
                 include: [/\.[jt]sx$/, /\.mdx$/]
             })
         ]
-    }
+    },
+    nitro: {
+    externals: {
+      inline: ['@mdx-js/vue'],
+    },
+  },
 });
