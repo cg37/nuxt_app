@@ -1,11 +1,4 @@
-@media print {
-  body {
-    /* 确保打印时依然使用你的中文字体 */
-    font-family: 'MyChineseFont', 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
-    -webkit-print-color-adjust: exact; /* 确保背景色和字体颜色被打印 */
-    print-color-adjust: exact;
-  }
-}
+
 
 @font-face {
   font-family: 'MyChineseFont';
@@ -38,4 +31,37 @@ body {
     padding: 0;
     width: 68%;
     height: 100%;
+}
+
+@media print {
+    /* 1. 重置最外层（你之前已经写的） */
+    html, body, #__nuxt {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+        display: block !important;
+    }
+
+    #__nuxt {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 2. 【新增】：专门针对 .layout 的修复 */
+    .layout {
+        height: auto !important;           /* 核心：解除 100vh 限制 */
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;      /* 允许内容溢出分页 */
+        display: block !important;         /* 取消 flex 布局，防止高度计算问题 */
+    }
+
+    /* 3. 如果 .layout 内部还有固定高度的子元素，也一并重置 */
+    .layout > * {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
 }
