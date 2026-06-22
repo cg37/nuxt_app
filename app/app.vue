@@ -1,5 +1,5 @@
 <template>
-      <MDXProvider :components="{a: CustomLink}">
+    <MDXProvider :components="mdxComponents">
         <NuxtPage />
     </MDXProvider>
 </template>
@@ -12,6 +12,3 @@ const mdxComponents = {
     a: CustomLink,
 }
 </script>
-
-<style>
-</style>

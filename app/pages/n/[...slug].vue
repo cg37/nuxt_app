@@ -1,43 +1,35 @@
 <template>
-  <div class="article-page">
-    <div v-if="ArticleComponent" class="article-content">
-        <ArticleComponent />
+    <div class="article-page">
+        <div v-if="raw" class="article-content">
+            <component :is="raw" />
+        </div>
+        <div v-else class="not-found">
+            <p>文章未找到</p>
+            <NuxtLink to="/" class="back-link">返回首页</NuxtLink>
+        </div>
     </div>
-    <div v-else class="not-found">
-      <p>文章未找到</p>
-      <NuxtLink to="/" class="back-link">返回首页</NuxtLink>
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, defineAsyncComponent } from 'vue'
-import { MDXProvider } from '@mdx-js/vue'
-import CustomLink from '../../components/CustomLink.vue'
+import { ref, watch, onMounted } from 'vue'
 
 const route = useRoute()
-// catch-all 路由: /n/a/b/c → params.slug = ['a', 'b', 'c']
-const slug = computed(() => {
-  const parts = route.params.slug as string[]
-  return parts.join('/')
-})
-
-// 递归扫描同级目录下所有 .mdx 文件
 const mdxModules = import.meta.glob('../n/**/*.mdx')
 
-const ArticleComponent = computed(() => {
-  const path = `../n/${slug.value}.mdx`
-  const importFn = mdxModules[path]
-  if (!importFn) return null
-  return defineAsyncComponent(importFn)
-})
+const raw = ref<Record<string, unknown> | null>(null)
 
-
-</script>
-<style lang="scss"scoped>
-.not-found {
-  text-align: center;
-  padding: 60px 0;
-  color: #888;
+async function load() {
+    const slug = (route.params.slug as string[]).join('/')
+    const path = `../n/${slug}.mdx`
+    const fn = mdxModules[path]
+    if (fn) {
+        const mod = await fn()
+        raw.value = mod as Record<string, unknown>
+    } else {
+        raw.value = null
+    }
 }
-</style>
+
+onMounted(load)
+watch(() => route.fullPath, load)
+</script>
