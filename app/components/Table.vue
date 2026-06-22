@@ -30,6 +30,7 @@ const WorkInformation = [
   font-size: 13px;
   line-height: 1.5;
   border: none;
+  font-size: 16px;
 }
 
 .work-table td {
@@ -39,19 +40,15 @@ const WorkInformation = [
 }
 
 .col-company {
-  width: 28%;
+  width: 25%;
 }
 
 .col-team {
-  width: 42%;
+  width: 45%;
 }
 
 .col-time {
   width: 30%;
   white-space: nowrap;
-}
-
-.mono {
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
 }
 </style>

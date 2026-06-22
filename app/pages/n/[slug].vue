@@ -101,7 +101,6 @@ const ArticleComponent = computed(() => {
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.9em;
-  font-family: 'Fira Code', 'JetBrains Mono', monospace;
 }
 
 .article-content :deep(pre) {
