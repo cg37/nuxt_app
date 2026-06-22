@@ -8,7 +8,7 @@ const srcDir = fileURLToPath(new URL('./app', import.meta.url))
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  css: ['./app/assets/css/main.scss'],
+  css: ['./app/assets/css/print.scss', './app/assets/css/main.scss'],
 
   extensions: ['.mdx'],
   debug: true,

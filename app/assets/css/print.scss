@@ -1,11 +1,17 @@
 html,
-body,
-#__nuxt {
-  display: block;
-  height: 100%;
+body {
+  margin: 0;
+  padding: 0;
   width: 100%;
-  overflow: visible;
-  background-color: #e0e0e0;
+  height: 100%;
+  background: #e0e0e0;
   color: #0a0a0a;
   font-family: 'Helvetica Neue', 'Arial', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+#__nuxt {
+  margin: auto;
+  padding: 0;
+  width: 72ch;
+  min-height: 100vh;
 }
