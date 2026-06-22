@@ -60,9 +60,7 @@ export default [
         },
     },
 
-    // PDF 工具代码需要 any 类型（第三方库类型不完善）
     {
-        files: ['**/utils/parse-markdown.ts', '**/server/api/export-pdf.post.ts'],
         rules: { '@typescript-eslint/no-explicit-any': 'off' },
     },
 
