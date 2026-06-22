@@ -53,11 +53,12 @@ async function exportResumePDF() {
     console.log(`\n✅ PDF 导出成功!`)
     console.log(`   保存路径: ${outputPath}`)
     console.log(`   文件大小: ${sizeKB} KB`)
-  } catch (error: any) {
+  } catch (error) {
+    const err = error as { message?: string; cause?: { code?: string } }
     console.error('\n❌ PDF 导出失败:')
-    console.error(`${error.message}`)
+    console.error(`${err.message}`)
 
-    if (error.cause?.code === 'ECONNREFUSED') {
+    if (err.cause?.code === 'ECONNREFUSED') {
       console.error('\n💡 提示: 请先启动 Nuxt 开发服务器:')
       console.error('   pnpm dev')
     }
