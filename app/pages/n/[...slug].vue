@@ -1,9 +1,7 @@
 <template>
   <div class="article-page">
     <div v-if="ArticleComponent" class="article-content">
-      <MDXProvider :components="mdxComponents">
         <ArticleComponent />
-      </MDXProvider>
     </div>
     <div v-else class="not-found">
       <p>文章未找到</p>
@@ -34,11 +32,9 @@ const ArticleComponent = computed(() => {
   return defineAsyncComponent(importFn)
 })
 
-const mdxComponents = {
-    a: CustomLink,
-}
+
 </script>
-<style scoped lang="scss">
+<style lang="scss"scoped>
 .not-found {
   text-align: center;
   padding: 60px 0;
