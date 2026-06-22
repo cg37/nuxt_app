@@ -32,8 +32,8 @@ async function exportResumePDF() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         title: '陈港 - 前端开发工程师简历',
-        content: resumeContent
-      })
+        content: resumeContent,
+      }),
     })
 
     if (!response.ok) {
@@ -53,10 +53,9 @@ async function exportResumePDF() {
     console.log(`\n✅ PDF 导出成功!`)
     console.log(`   保存路径: ${outputPath}`)
     console.log(`   文件大小: ${sizeKB} KB`)
-
   } catch (error: any) {
     console.error('\n❌ PDF 导出失败:')
-    console.error(`   ${error.message}`)
+    console.error(`${error.message}`)
 
     if (error.cause?.code === 'ECONNREFUSED') {
       console.error('\n💡 提示: 请先启动 Nuxt 开发服务器:')

@@ -6,7 +6,7 @@
 import { h } from 'vue'
 import { resolve } from 'path'
 import { existsSync } from 'fs'
-import { styles, parseInline, parseMarkdownToElements } from '../../utils/parse-markdown'
+import { styles, parseMarkdownToElements } from '../../utils/parse-markdown'
 
 // 注册中文字体（服务端 fontStore 需要文件系统绝对路径）
 // dev: cwd=项目根 → public/fonts/...
@@ -63,11 +63,7 @@ export default defineEventHandler(async (event) => {
   )
 
   setResponseHeader(event, 'Content-Type', 'application/pdf')
-  setResponseHeader(
-    event,
-    'Content-Disposition',
-    `attachment; filename="${encodeURIComponent(title || 'export')}.pdf"`,
-  )
+  setResponseHeader(event, 'Content-Disposition', `attachment; filename="${encodeURIComponent(title || 'export')}.pdf"`)
   setResponseHeader(event, 'Content-Length', pdfBuffer.length)
 
   return pdfBuffer

@@ -4,7 +4,7 @@
       <Text :style="styles.h1">{{ title }}</Text>
       <Text :style="styles.date">生成时间：{{ dateStr }}</Text>
       <View :style="styles.divider" />
-      <slot />
+      <slot></slot>
     </Page>
   </Document>
 </template>

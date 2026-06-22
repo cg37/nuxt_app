@@ -30,11 +30,10 @@ const WorkInformation = [
   font-size: 13px;
   line-height: 1.5;
   border: none;
-
 }
 
 .work-table td {
-    border: none;
+  border: none;
   padding: 8px 12px;
   vertical-align: middle;
 }

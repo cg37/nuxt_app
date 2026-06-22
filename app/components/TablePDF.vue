@@ -24,17 +24,6 @@ const WorkInformation = [
 
 const baseFont: Style = { fontSize: 11, lineHeight: 1.4 }
 
-const headerRowStyle: Style = {
-  ...baseFont,
-  flexDirection: 'row',
-  fontWeight: 'bold',
-  backgroundColor: '#f5f5f5',
-  paddingTop: 6,
-  paddingBottom: 6,
-  paddingLeft: 8,
-  paddingRight: 8,
-}
-
 const rowStyle: Style = {
   ...baseFont,
   flexDirection: 'row',
@@ -43,10 +32,6 @@ const rowStyle: Style = {
   paddingLeft: 8,
   paddingRight: 8,
   borderBottom: 'none',
-}
-
-function headerCellStyle(flex: string): Style {
-  return { flex, fontWeight: 'bold' }
 }
 
 function cellStyle(flex: string): Style {

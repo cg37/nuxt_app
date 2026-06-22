@@ -1,4 +1,3 @@
-
 <template>
   <Document>
     <Page size="A4" :style="styles.page">
@@ -39,4 +38,3 @@ const RenderNodes = defineComponent({
   },
 })
 </script>
-
