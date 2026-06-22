@@ -12,59 +12,63 @@ import { styles, parseMarkdownToElements } from '../../utils/parse-markdown'
 // dev: cwd=项目根 → public/fonts/...
 // production(build): cwd=.output/ → .output/public/fonts/...
 const fontPath = (() => {
-  const candidates = [
-    resolve(process.cwd(), 'public/fonts/NotoSansSC-Regular.ttf'),
-    resolve(process.cwd(), '.output/public/fonts/NotoSansSC-Regular.ttf'),
-  ]
-  return candidates.find(existsSync) ?? candidates[0]
+    const candidates = [
+        resolve(process.cwd(), 'public/fonts/NotoSansSC-Regular.ttf'),
+        resolve(process.cwd(), '.output/public/fonts/NotoSansSC-Regular.ttf'),
+    ]
+    return candidates.find(existsSync) ?? candidates[0]
 })()
 
 let fontRegistered = false
 
 function ensureFontRegistered(fontStore: any) {
-  if (fontRegistered) return
-  fontStore.register({
-    family: 'NotoSansSC',
-    fonts: [{ src: fontPath, fontWeight: 400, fontStyle: 'normal' }],
-  })
-  fontRegistered = true
+    if (fontRegistered) return
+    fontStore.register({
+        family: 'NotoSansSC',
+        fonts: [{ src: fontPath, fontWeight: 400, fontStyle: 'normal' }],
+    })
+    fontRegistered = true
 }
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event)
-  const { title, content } = body
+    const body = await readBody(event)
+    const { title, content } = body
 
-  if (!content) {
-    throw createError({ statusCode: 400, message: '缺少 content 参数' })
-  }
+    if (!content) {
+        throw createError({ statusCode: 400, message: '缺少 content 参数' })
+    }
 
-  const vuePdf = await import('@ceereals/vue-pdf')
-  const { renderToBuffer, fontStore, Document, Page, Text, View, Link } = vuePdf
+    const vuePdf = await import('@ceereals/vue-pdf')
+    const { renderToBuffer, fontStore, Document, Page, Text, View, Link } = vuePdf
 
-  ensureFontRegistered(fontStore)
+    ensureFontRegistered(fontStore)
 
-  const date = new Date().toLocaleString('zh-CN')
-  const lines = content.split('\n')
-  const bodyElements = parseMarkdownToElements(lines, Text, View, Link)
+    const date = new Date().toLocaleString('zh-CN')
+    const lines = content.split('\n')
+    const bodyElements = parseMarkdownToElements(lines, Text, View, Link)
 
-  const pdfBuffer = await renderToBuffer(
-    h(Document, { title: title || 'PDF' }, [
-      h(Page, { size: 'A4', style: styles.page }, [
-        ...(title
-          ? [
-              h(Text, { style: styles.h1 }, title),
-              h(Text, { style: styles.date }, `生成时间：${date}`),
-              h(View, { style: styles.divider }),
-            ]
-          : []),
-        ...bodyElements,
-      ]),
-    ]),
-  )
+    const pdfBuffer = await renderToBuffer(
+        h(Document, { title: title || 'PDF' }, [
+            h(Page, { size: 'A4', style: styles.page }, [
+                ...(title
+                    ? [
+                          h(Text, { style: styles.h1 }, title),
+                          h(Text, { style: styles.date }, `生成时间：${date}`),
+                          h(View, { style: styles.divider }),
+                      ]
+                    : []),
+                ...bodyElements,
+            ]),
+        ]),
+    )
 
-  setResponseHeader(event, 'Content-Type', 'application/pdf')
-  setResponseHeader(event, 'Content-Disposition', `attachment; filename="${encodeURIComponent(title || 'export')}.pdf"`)
-  setResponseHeader(event, 'Content-Length', pdfBuffer.length)
+    setResponseHeader(event, 'Content-Type', 'application/pdf')
+    setResponseHeader(
+        event,
+        'Content-Disposition',
+        `attachment; filename="${encodeURIComponent(title || 'export')}.pdf"`,
+    )
+    setResponseHeader(event, 'Content-Length', pdfBuffer.length)
 
-  return pdfBuffer
+    return pdfBuffer
 })
