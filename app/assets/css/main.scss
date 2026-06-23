@@ -1,13 +1,35 @@
-:root {
-    /* 现代无衬线中文字体栈 */
-    --font-sans-zh:
-        system-ui, -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto,
-        'Helvetica Neue', Arial, sans-serif;
-    --font-mono: 'Sarasa Gothic SC', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+/* 默认/亮色模式 */
+$themes: (
+    light: (
+        text_main: #0a0a0a,
+        text-sub: #666666,
+        bg_color: #f9fafb,
+        bg_surface: #ffffff,
+        border: #e5e5e5,
+        bg-muted: #f3f4f6,
+        g-hover: #e5e7eb,
+    ),
+    dark: (
+        text_main: #0a0a0a,
+        text-sub: #a0a0a0,
+        bg_color: #0a0a0a,
+        border: #333333,
+    ),
+);
+
+// 2. 使用 @each 循环自动生成 CSS 变量
+@each $theme-name, $colors in $themes {
+    html.#{$theme-name} {
+        @each $color-name, $color-value in $colors {
+            // 生成类似 --color-text-main: #1a1a1a; 的 CSS 变量
+            --color-#{$color-name}: #{$color-value};
+        }
+    }
 }
 
-body {
-    font-family: var(--font-sans-zh);
+// 3. 定义 SCSS 函数方便调用（同方法二）
+@function theme($key) {
+    @return var(--color-#{$key});
 }
 
 html,
@@ -16,14 +38,31 @@ body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background: #0a0a0a;
-    color: #e0e0e0;
     font-family: 'Helvetica Neue', 'Arial', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+html.light {
+    background-color: theme(bg_color);
+    color: theme(text_main);
+}
+
+html.dark {
+    background-color: theme(bg_color);
+    color: theme(text_main);
+}
+
+:root {
+    /* 现代无衬线中文字体栈 */
+    --font-sans-zh:
+        system-ui, -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'Sarasa Gothic SC', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 #__nuxt {
     margin: auto;
     padding: 0;
-    width: 75ch;
+    width: 60ch;
     min-height: 100vh;
+    background-color: theme(bg_surface);
 }

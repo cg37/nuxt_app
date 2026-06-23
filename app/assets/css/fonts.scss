@@ -1,0 +1,89 @@
+html {
+    font-size: clamp(15px, 1vw + 10px, 18px);
+}
+
+:root {
+    --font-sans: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-serif: 'LXGW WenKai Screen', Georgia, serif;
+    --font-mono: 'Sarasa Gothic SC', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --text-xs: 0.8rem; /* 12.8px - 极小字，如版权信息、标签 */
+    --text-sm: 0.875rem; /* 14px   - 辅助文本、代码注释 */
+    --text-base: 1rem; /* 16px   - 正文基准 (继承 html) */
+    --text-lg: 1.25rem; /* 20px   - 小标题、强调段落 */
+
+    --text-xl: 1.563rem; /* 25px   - H4 标题 */
+    --text-2xl: 1.953rem; /* 31.2px - H3 标题 */
+    --text-3xl: 2.441rem; /* 39px   - H2 标题 */
+    --text-4xl: 3.052rem; /* 48.8px - H1 标题 */
+    --text-5xl: 3.815rem; /* 61px   - 首页 Hero 大标题 */
+
+    /* =========================================
+     3. 行高阶梯 (与字体大小配套)
+     规律：字越小，行高越大；字越大，行高越小。
+     ========================================= */
+    --leading-tight: 1.2; /* 大标题 */
+    --leading-normal: 1.6; /* 正文阅读 */
+    --leading-loose: 1.8; /* 小字/代码 */
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base); /* 调用变量 */
+    line-height: var(--leading-normal);
+}
+
+/* 2. MDX 标题映射 (完美继承比例) */
+h1 {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    font-weight: 800;
+}
+h2 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+    font-weight: 700;
+}
+h3 {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+}
+h4 {
+    font-size: var(--text-xl);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+}
+
+/* 3. 段落与列表 */
+p,
+ul,
+ol {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    margin-bottom: 1.5em; /* 使用 em 让间距跟随当前字体大小 */
+}
+
+/* 4. 代码块与行内代码 */
+code {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm); /* 代码通常比正文小一号 */
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+}
+
+pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: var(--leading-loose);
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* 5. 辅助文本 / 引用块 */
+blockquote,
+small,
+.text-muted {
+    font-size: var(--text-sm);
+}
