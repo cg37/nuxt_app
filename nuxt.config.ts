@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
 import { fileURLToPath, URL } from 'node:url'
 import mdx from '@mdx-js/rollup'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -6,21 +7,27 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 const srcDir = fileURLToPath(new URL('./app', import.meta.url))
 
 export default defineNuxtConfig({
-    compatibilityDate: '2025-07-15',
+    srcDir: 'app/',
+    compatibilityDate: '2026-06-20',
     devtools: { enabled: true },
-    css: ['./app/assets/css/print.scss', './app/assets/css/main.scss'],
+    css: [
+        '@/assets/css/print.scss',
+        '@/assets/css/main.scss',
+        '@/assets/css/fonts.scss',
+        '@/assets/css/colorMode.scss',
+    ],
 
-    extensions: ['.mdx'],
-    debug: true,
+    modules: ['@nuxtjs/color-mode'],
+    colorMode: {
+        preference: 'light',
+        fallback: 'light',
+        classSuffix: '',
+    },
+
+    debug: process.env.NODE_ENV !== 'production',
     vite: {
         optimizeDeps: {
             include: ['@mdx-js/vue'],
-        },
-        resolve: {
-            alias: {
-                '~': srcDir,
-                '@': srcDir,
-            },
         },
         plugins: [
             {
