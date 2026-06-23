@@ -9,7 +9,7 @@ html {
 
     --text-xs: 0.8rem; /* 12.8px - 极小字，如版权信息、标签 */
     --text-sm: 0.875rem; /* 14px   - 辅助文本、代码注释 */
-    --text-base: 0.9rem; /* 16px   - 正文基准 (继承 html) */
+    --text-base: 1.08rem; /* 16px   - 正文基准 (继承 html) */
     --text-lg: 1.25rem; /* 20px   - 小标题、强调段落 */
 
     --text-xl: 1.563rem; /* 25px   - H4 标题 */
@@ -90,4 +90,9 @@ blockquote,
 small,
 .text-muted {
     font-size: var(--text-sm);
+}
+
+a {
+    font-size: var(--text-base);
+    line-height: var(--leading-tight);
 }
