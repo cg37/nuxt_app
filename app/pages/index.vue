@@ -1,6 +1,7 @@
 <template>
     <div class="home">
         <div class="homepage-title">Craig</div>
+
         <section class="article-list">
             <div v-for="year in sortedYears" :key="year" class="year-group">
                 <h2 class="year-title">{{ year }}</h2>
@@ -65,7 +66,7 @@ const sortedYears = Object.keys(grouped).sort((a, b) => Number(b) - Number(a))
 
 .homepage-title {
     font-size: 2.5rem;
-    color: #f0f0f0;
+    color: theme(text_main);
     margin-bottom: 32px;
 }
 

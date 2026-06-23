@@ -14,13 +14,13 @@
 import { ref, watch, onMounted } from 'vue'
 
 const route = useRoute()
-const mdxModules = import.meta.glob('../n/**/*.mdx')
+const mdxModules = import.meta.glob('@/content/**/content.mdx')
 
 const raw = ref<Record<string, unknown> | null>(null)
 
 async function load() {
     const slug = (route.params.slug as string[]).join('/')
-    const path = `../n/${slug}.mdx`
+    const path = `@/content/${slug}/content.mdx`
     const fn = mdxModules[path]
     if (fn) {
         const mod = await fn()

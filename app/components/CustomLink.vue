@@ -32,14 +32,6 @@ const isExternal = computed(() => {
     --link-bg-color: rgba(37, 99, 235, 0.1); /* 浅蓝荧光笔背景 */
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --link-color: #60a5fa; /* 柔和的浅蓝 */
-        --link-hover-color: #93c5fd; /* 悬停更亮 */
-        --link-bg-color: rgba(96, 165, 250, 0.15); /* 暗黑模式下的背景 */
-    }
-}
-
 .modern-link {
     color: var(--link-color);
     text-decoration: none;
