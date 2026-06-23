@@ -61,8 +61,19 @@ html.dark {
 
 #__nuxt {
     margin: auto;
-    padding: 0;
-    width: 60ch;
+    padding: 32px;
     min-height: 100vh;
     background-color: theme(bg_surface);
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    margin-block: 16px 32px;
+}
+
+h3 {
+    margin-block: 24px 8px;
 }

@@ -7,7 +7,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 const srcDir = fileURLToPath(new URL('./app', import.meta.url))
 
 export default defineNuxtConfig({
-    srcDir: 'app/',
+    srcDir,
     compatibilityDate: '2026-06-20',
     devtools: { enabled: true },
     css: ['@/assets/css/print.scss', '@/assets/css/main.scss', '@/assets/css/fonts.scss'],
