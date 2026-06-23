@@ -1,15 +1,11 @@
 <template>
-    <a
-        :href="href"
-        class="modern-link"
-        :class="{ 'is-external': isExternal }"
-        :target="isExternal ? '_blank' : '_self'"
-        :rel="isExternal ? 'noopener noreferrer' : undefined"
-    >
+    <a v-if="isExternal" :href="href" class="modern-link is-external" target="_blank" rel="noopener noreferrer">
         <slot></slot>
-        <!-- 如果是外部链接，显示一个极简的右上角小箭头图标 -->
-        <ExternalLinkIcon v-if="isExternal" />
+        <ExternalLinkIcon />
     </a>
+    <NuxtLink v-else :to="href" class="modern-link">
+        <slot></slot>
+    </NuxtLink>
 </template>
 
 <script setup lang="ts">
