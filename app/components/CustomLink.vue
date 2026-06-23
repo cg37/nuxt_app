@@ -12,16 +12,13 @@
     </a>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import ExternalLinkIcon from './ExternalLinkIcon.vue'
 
-const props = defineProps({
-    href: {
-        type: String,
-        default: '',
-    },
-})
+const props = defineProps<{
+    href: string
+}>()
 
 const isExternal = computed(() => {
     return props.href && (props.href.startsWith('http://') || props.href.startsWith('https://'))
@@ -29,16 +26,12 @@ const isExternal = computed(() => {
 </script>
 
 <style>
-/* =========================================
-   1. 定义 CSS 变量 (支持亮色/暗色模式)
-   ========================================= */
 :root {
     --link-color: #2563eb; /* 现代亮蓝色 */
     --link-hover-color: #1d4ed8; /* 悬停深蓝 */
     --link-bg-color: rgba(37, 99, 235, 0.1); /* 浅蓝荧光笔背景 */
 }
 
-/* 自动适配系统暗黑模式 */
 @media (prefers-color-scheme: dark) {
     :root {
         --link-color: #60a5fa; /* 柔和的浅蓝 */
@@ -47,9 +40,6 @@ const isExternal = computed(() => {
     }
 }
 
-/* =========================================
-   2. 核心链接样式
-   ========================================= */
 .modern-link {
     color: var(--link-color);
     text-decoration: none;
@@ -70,16 +60,11 @@ const isExternal = computed(() => {
         color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
         background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* 悬停状态：背景高亮 + 文字变色 */
 .modern-link:hover {
     color: var(--link-hover-color);
     background-color: var(--link-bg-color);
 }
 
-/* =========================================
-   3. 底部下划线滑入动画 (高级感来源)
-   ========================================= */
 .modern-link::after {
     content: '';
     position: absolute;
@@ -95,7 +80,6 @@ const isExternal = computed(() => {
     transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-/* 悬停时：下划线从左到右滑入展开 */
 .modern-link:hover::after {
     transform-origin: bottom left;
     transform: scaleX(1);

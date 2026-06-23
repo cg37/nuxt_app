@@ -28,7 +28,6 @@ interface Article {
 }
 
 const articles: Article[] = Object.entries(mdxFiles).map(([path, meta]) => {
-    // 例如: ./n/2026/resume/content.mdx -> year=2026, slug=2026/resume/content
     const rel = path.replace('./n/', '')
     const parts = rel.replace('.mdx', '').split('/')
     const year = parts[0] ?? ''
