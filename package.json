@@ -27,6 +27,7 @@
         "@craig37/lint-config": "link:../../.local/share/pnpm/global/5/node_modules/@craig37/lint-config",
         "@eslint/js": "^10.0.1",
         "@nuxt/devtools": "4.0.0-alpha.7",
+        "@nuxtjs/color-mode": "^4.0.1",
         "@nuxtjs/google-fonts": "^3.2.0",
         "eslint": "^10.5.0",
         "eslint-config-prettier": "^10.1.8",
