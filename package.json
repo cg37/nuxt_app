@@ -1,47 +1,47 @@
 {
-  "name": "mdx_pdf",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
-  },
-  "dependencies": {
-    "@mdx-js/rollup": "^3.1.1",
-    "@mdx-js/vue": "^3.1.1",
-    "@vitejs/plugin-vue-jsx": "^5.1.5",
-    "jspdf": "^4.2.1",
-    "nuxt": "^4.4.8",
-    "vue": "^3.5.35",
-    "vue-router": "^5.1.0"
-  },
-  "devDependencies": {
-    "@ceereals/vue-pdf": "^0.3.1",
-    "@commitlint/cli": "^21.0.2",
-    "@craig37/lint-config": "link:../../.local/share/pnpm/global/5/node_modules/@craig37/lint-config",
-    "@eslint/js": "^10.0.1",
-    "@nuxt/devtools": "4.0.0-alpha.7",
-    "eslint": "^10.5.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
-    "eslint-plugin-vue": "^10.9.2",
-    "globals": "^17.6.0",
-    "prettier": "^3.8.4",
-    "sass-embedded": "^1.100.0",
-    "typescript-eslint": "^8.61.1",
-    "vue-eslint-parser": "^10.4.1"
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "tabWidth": 4,
-    "trailingComma": "all",
-    "printWidth": 120,
-    "arrowParens": "always"
-  }
+    "name": "mdx_pdf",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix ."
+    },
+    "dependencies": {
+        "@mdx-js/rollup": "^3.1.1",
+        "@mdx-js/vue": "^3.1.1",
+        "@vitejs/plugin-vue-jsx": "^5.1.5",
+        "jspdf": "^4.2.1",
+        "nuxt": "^4.4.8",
+        "vue": "^3.5.35",
+        "vue-router": "^5.1.0"
+    },
+    "devDependencies": {
+        "@ceereals/vue-pdf": "^0.3.1",
+        "@commitlint/cli": "^21.0.2",
+        "@craig37/lint-config": "link:../../.local/share/pnpm/global/5/node_modules/@craig37/lint-config",
+        "@eslint/js": "^10.0.1",
+        "@nuxt/devtools": "4.0.0-alpha.7",
+        "eslint": "^10.5.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.6",
+        "eslint-plugin-vue": "^10.9.2",
+        "globals": "^17.6.0",
+        "prettier": "^3.8.4",
+        "sass-embedded": "^1.100.0",
+        "typescript-eslint": "^8.61.1",
+        "vue-eslint-parser": "^10.4.1"
+    },
+    "prettier": {
+        "semi": false,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "all",
+        "printWidth": 120,
+        "arrowParens": "always"
+    }
 }

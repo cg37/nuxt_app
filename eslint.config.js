@@ -80,7 +80,7 @@ export default [
     {
         rules: {
             'vue/html-self-closing': [
-                'error',
+                'no',
                 {
                     html: { void: 'always', normal: 'never', component: 'always' },
                     svg: 'always',
