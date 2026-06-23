@@ -18,7 +18,6 @@
 </template>
 
 <script setup lang="ts">
-// 扫描 app/content 下所有 content.mdx 文件，读取导出的 metadata
 const mdxFiles = import.meta.glob('@/content/**/content.mdx', { eager: true, import: 'metadata' })
 
 interface Article {
@@ -29,8 +28,6 @@ interface Article {
 }
 
 const articles: Article[] = Object.entries(mdxFiles).map(([path, meta]) => {
-    // 从 '@/content/2025/nuxt_mdx/content.mdx' 提取 '2025/nuxt_mdx'
-
     const rel = path.replace('/content/', '').replace('/content.mdx', '')
     const metadata = meta as Record<string, unknown> | undefined
 
@@ -55,13 +52,13 @@ for (const a of articles) {
 }
 
 const sortedYears = Object.keys(grouped).sort((a, b) => Number(b) - Number(a))
-watch(
-    () => articles,
-    () => {
-        // console.log('articles', articles)
-    },
-    { deep: true, immediate: true },
-)
+// watch(
+//     () => articles,
+//     () => {
+//         // console.log('articles', articles)
+//     },
+//     { deep: true, immediate: true },
+// )
 </script>
 
 <style scoped>
