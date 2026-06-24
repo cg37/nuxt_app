@@ -34,7 +34,6 @@ const articles: Article[] = Object.entries(mdxFiles).map(([path, meta]) => {
     const metadata = meta as Record<string, unknown> | undefined
 
     const parts = rel.split('/')
-    console.log('parts', rel, parts, path)
     const year = parts[0] ?? ''
     const defaultTitle = parts[parts.length - 1] ?? ''
 
@@ -54,13 +53,6 @@ for (const a of articles) {
 }
 
 const sortedYears = Object.keys(grouped).sort((a, b) => Number(b) - Number(a))
-// watch(
-//     () => articles,
-//     () => {
-//         // console.log('articles', articles)
-//     },
-//     { deep: true, immediate: true },
-// )
 </script>
 
 <style scoped>

@@ -1,12 +1,16 @@
 <template>
     <div class="article-page">
         <div v-if="raw" class="article-content">
-            <h1 class="article-title">{{ metadata?.title }}</h1>
+            <template v-if="!metadata?.hideTitle">
+                <h1 class="article-title">{{ metadata?.title }}</h1>
+                <br />
+            </template>
             <component :is="raw" />
         </div>
-        <div v-else class="not-found">
+        <div v-else class="article-content">
+            <br />
             <p>文章未找到</p>
-            <NuxtLink to="/" class="back-link">返回首页</NuxtLink>
+            <CustomLink href="/">返回首页</CustomLink>
         </div>
     </div>
 </template>
@@ -38,9 +42,3 @@ async function load() {
 onMounted(load)
 watch(() => route.fullPath, load)
 </script>
-<style lang="scss" scoped>
-.article-content {
-    width: 60ch;
-    margin: auto;
-}
-</style>

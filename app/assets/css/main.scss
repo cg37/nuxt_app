@@ -7,7 +7,7 @@ $themes: (
         bg_surface: #ffffff,
         border: #e5e5e5,
         bg-muted: #f3f4f6,
-        g-hover: #e5e7eb,
+        bg_hover: #e5e7eb,
     ),
     dark: (
         text_main: #0a0a0a,
@@ -44,6 +44,9 @@ body {
 html.light {
     background-color: theme(bg_color);
     color: theme(text_main);
+    code {
+        background-color: theme(bg_hover);
+    }
 }
 
 html.dark {
@@ -71,9 +74,19 @@ h1 {
 }
 
 h2 {
-    margin-block: 16px 32px;
+    margin-block: 32px 16px;
 }
 
 h3 {
     margin-block: 24px 8px;
+}
+
+.article-content {
+    width: 60ch;
+    margin: auto;
+}
+
+code {
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
 }
