@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 
     modules: ['@nuxtjs/color-mode'],
     colorMode: {
-        preference: 'light',
+        preference: 'reference',
         fallback: 'light',
         classSuffix: '',
         storage: 'cookie',

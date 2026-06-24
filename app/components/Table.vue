@@ -1,8 +1,8 @@
 <template>
     <div class="tableContainer">
         <div class="flexRowItem" v-for="item in WorkInformation" :key="item.company">
-            <div class="company">{{ item.company }}</div>
-            <div class="team">{{ item.team }} {{ item.title }}</div>
+            <div class="company common_text">{{ item.company }}</div>
+            <div class="team common_text">{{ item.team }} {{ item.title }}</div>
             <div class="time">
                 <span class="timeItem">{{ item.timeStart }}</span>
                 <span>-</span>
