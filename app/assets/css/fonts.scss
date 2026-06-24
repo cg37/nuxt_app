@@ -57,9 +57,8 @@ h4 {
 
 /* 3. 段落与列表 */
 p {
-    padding: 0;
-    margin: 0;
     line-height: var(--leading-normal);
+    font-weight: 300;
 }
 
 a {
@@ -70,6 +69,7 @@ a {
 ul,
 ol {
     font-size: var(--text-base);
+    font-weight: 300;
     line-height: var(--leading-normal);
     margin: 0;
     padding-left: 20px;
@@ -82,6 +82,7 @@ ol {
 code {
     font-family: var(--font-mono);
     font-size: var(--text-sm); /* 代码通常比正文小一号 */
+    font-weight: 200;
 }
 
 pre {

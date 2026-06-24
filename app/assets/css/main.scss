@@ -69,21 +69,27 @@ html.dark {
     background-color: theme(bg_surface);
 }
 
+.article-content {
+    width: 60ch;
+    margin: auto;
+}
+
 h1 {
     margin: 0;
 }
 
 h2 {
-    margin-block: 32px 16px;
+    margin-block: 16px 8px;
+    border-bottom: 1.5px #e5e5e5 solid;
 }
 
 h3 {
     margin-block: 24px 8px;
 }
 
-.article-content {
-    width: 60ch;
-    margin: auto;
+p {
+    padding: 0;
+    margin: 0;
 }
 
 code {
