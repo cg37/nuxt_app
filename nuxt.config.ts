@@ -28,7 +28,7 @@ export default defineNuxtConfig({
         plugins: [
             {
                 ...mdx({
-                    jsxImportSource: 'vue',
+                    jsx: true,
                     providerImportSource: '@mdx-js/vue',
                 }),
                 enforce: 'pre',

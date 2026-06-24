@@ -56,7 +56,9 @@ h4 {
 }
 
 /* 3. 段落与列表 */
-p,
+p {
+    padding-left: 0;
+}
 ul,
 ol {
     font-size: var(--text-base);

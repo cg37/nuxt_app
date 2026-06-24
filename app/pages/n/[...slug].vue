@@ -38,3 +38,9 @@ async function load() {
 onMounted(load)
 watch(() => route.fullPath, load)
 </script>
+<style lang="scss" scoped>
+.article-content {
+    width: 60ch;
+    margin: auto;
+}
+</style>
