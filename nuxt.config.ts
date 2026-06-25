@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     srcDir,
     compatibilityDate: '2026-06-20',
     devtools: { enabled: true },
-    css: ['@/assets/css/print.scss', '@/assets/css/main.scss', '@/assets/css/fonts.scss'],
+    css: ['@/assets/css/print.scss', '@/assets/css/main.scss'],
 
     modules: ['@nuxtjs/color-mode'],
     colorMode: {

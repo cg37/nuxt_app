@@ -1,5 +1,29 @@
 @media print {
-    h1 {
-        margin-block-start: 0;
+    @page {
+        size: A4;
+        margin: 25mm 20mm 20mm;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+    p,
+    blockquote,
+    ul,
+    ol,
+    dl,
+    figure,
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    .header,
+    .section-title {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 }

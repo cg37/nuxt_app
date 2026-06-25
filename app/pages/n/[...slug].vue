@@ -1,10 +1,10 @@
 <template>
     <div class="article-page">
         <div v-if="raw" class="article-content">
-            <template v-if="!metadata?.hideTitle">
+            <!-- <template v-if="!metadata?.hideTitle">
                 <h1 class="article-title">{{ metadata?.title }}</h1>
                 <br />
-            </template>
+            </template> -->
             <component :is="raw" />
         </div>
         <div v-else class="article-content">
