@@ -23,7 +23,7 @@ const WorkInformation = [
     },
     { company: '极氪', team: '数字发展中心', title: '前端开发(外包)', timeStart: '2021.09', timeEnd: '2023.10' },
     { company: '华为', team: '华为云 EI产品服务部', title: '前端开发(OD)', timeStart: '2023.11', timeEnd: '2025.07' },
-    { company: '美团', team: '闪购技术部', title: '前端开发(外包)', timeStart: '2025.07', timeEnd: null },
+    { company: '美团', team: '闪购技术部', title: '前端开发(外包)', timeStart: '2025.07', timeEnd: '2026.07' },
 ]
 </script>
 <style lang="scss" scoped>
@@ -34,13 +34,15 @@ const WorkInformation = [
 .flexRowItem {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
     .company {
-        flex: 3;
+        flex: 2;
         text-align: left;
     }
     .team {
-        flex: 6;
+        flex: 5;
         text-align: left;
     }
     .time {
@@ -50,6 +52,9 @@ const WorkInformation = [
         gap: 4px;
         .timeItem {
             font-family: 'SF Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+            font-size: 18px;
+            line-height: 1;
+            text-align: center;
         }
     }
 }
