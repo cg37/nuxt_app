@@ -41,7 +41,7 @@ const articles: Article[] = Object.entries(mdxFiles).map(([path, meta]) => {
         slug: rel,
         title: (metadata?.title as string) ?? defaultTitle,
         year,
-        path: `/n/${rel}`,
+        path: `${rel}`,
     }
 })
 
