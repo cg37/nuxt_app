@@ -12,24 +12,19 @@
         <CustomLink href="/">返回首页</CustomLink>
     </div>
     <div class="pdf_button">
-        <DownLoadPdfButton />
-        111
+        <DownloadPdfButton :title="metadata?.title" />
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
-import { usePdfApi } from '/components/composable/usePdfApi'
-import DownloadPdfButton from '/app/components/DownloadPdfButton'
+import DownloadPdfButton from '/components/DownloadPdfButton'
 
 const route = useRoute()
 const mdxModules = import.meta.glob('@/content/**/content.mdx')
 
 const raw = ref<Record<string, unknown> | null>(null)
 const metadata = ref<Record<string, unknown> | null>(null)
-const loading = ref(false)
-
-const { generatePdf } = usePdfApi()
 
 async function load() {
     const slug = (route.params.slug as string[]).join('/')
@@ -73,5 +68,11 @@ watch(() => route.fullPath, load)
         background 0.2s,
         transform 0.2s;
     z-index: 100;
+}
+
+@media print {
+    .pdf_button {
+        display: none;
+    }
 }
 </style>

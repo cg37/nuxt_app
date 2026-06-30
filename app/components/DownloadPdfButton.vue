@@ -1,12 +1,5 @@
 <template>
-    <!-- 悬浮 PDF 导出按钮 -->
-    <button
-        v-if="raw"
-        class="pdf-btn"
-        :disabled="loading"
-        @click="handleExport"
-        :title="loading ? '生成中...' : '导出 PDF'"
-    >
+    <button class="pdf-btn" :disabled="loading" @click="handleExport" :title="loading ? '生成中...' : '导出 PDF'">
         <span v-if="loading" class="spinner" />
         <svg v-else viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -16,13 +9,25 @@
         </svg>
     </button>
 </template>
+
 <script setup lang="ts">
+import { ref } from 'vue'
+import { usePdfApi } from '/components/composable/usePdfApi'
+
+const props = defineProps<{
+    title?: string
+}>()
+
+const route = useRoute()
+const { generatePdf } = usePdfApi()
+const loading = ref(false)
+
 async function handleExport() {
     loading.value = true
     try {
-        await generatePdf(route.fullPath, `${metadata.value?.title || 'document'}.pdf`)
+        await generatePdf(route.fullPath, `${props.title || 'document'}.pdf`)
     } catch {
-        alert('PDF 导出失败，请稍后重试')
+        alert('PDF 导出失败，请稍后重试aaa')
     } finally {
         loading.value = false
     }
@@ -30,6 +35,22 @@ async function handleExport() {
 </script>
 
 <style scoped>
+.pdf-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: #3b82f6;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
 .pdf-btn:hover:not(:disabled) {
     background: #2563eb;
     transform: scale(1.05);
@@ -47,6 +68,11 @@ async function handleExport() {
     border-top-color: #fff;
     border-radius: 50%;
     animation: spin 0.6s linear infinite;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 @keyframes spin {
     to {
