@@ -1,8 +1,15 @@
 export const usePdfApi = () => {
-    const pdfServiceUrl = 'http:192.168.8.204:5000/api/pdf/form-url'
+    const pdfServiceUrl = 'http://localhost:5050/api/Pdf/from-url'
 
-    const generatePdf = async (pagePath: string, filename: string = 'document.pdf') => {
-        const targetUrl = `http://192.168.8.220:3000${pagePath}`
+    const generatePdf = async (pagePath: string, filename?: string) => {
+        const targetUrl = `http://localhost:3000${pagePath}`
+
+        // 使用传入的标题作为默认文件名，确保有 .pdf 后缀
+        if (!filename) {
+            filename = 'document.pdf'
+        } else if (!filename.endsWith('.pdf')) {
+            filename = `${filename}.pdf`
+        }
 
         try {
             const response = await fetch(pdfServiceUrl, {
@@ -12,17 +19,32 @@ export const usePdfApi = () => {
             })
             if (!response.ok) throw new Error(`PDF 生成失败: ${response.statusText}`)
 
-            const result = await response.json()
-            const downloadUrl = result.url
+            // 从 Content-Disposition 头提取文件名
+            const contentDisposition = response.headers.get('content-disposition')
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename\*?=(?:UTF-8'')?([^;]+)/i)
+                if (filenameMatch) {
+                    filename = decodeURIComponent(filenameMatch[1] as any)
+                }
+            }
 
-            const a = document.createElement('a')
-            a.href = downloadUrl
-            a.download = filename
-            document.body.appendChild(a)
-            a.click()
-            a.remove()
+            // 将响应作为 Blob 并在窗口中预览
+            const blob = await response.blob()
+            const blobUrl = URL.createObjectURL(blob)
 
-            return downloadUrl
+            // 在新窗口打开 PDF 预览
+            const previewWindow = window.open(blobUrl, '_blank')
+            if (!previewWindow) {
+                // 如果弹窗被拦截，回退到下载模式
+                const a = document.createElement('a')
+                a.href = blobUrl
+                a.download = filename
+                document.body.appendChild(a)
+                a.click()
+                a.remove()
+            }
+
+            return blobUrl
         } catch (err) {
             console.error('err', err)
             throw err
