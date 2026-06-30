@@ -12,7 +12,7 @@
         <CustomLink href="/">返回首页</CustomLink>
     </div>
     <div class="pdf_button">
-        <DownloadPdfButton :title="metadata?.titleEng" />
+        <DownloadPdfButton :title="metadata?.title" />
     </div>
 </template>
 

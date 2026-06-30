@@ -8,7 +8,7 @@ export const usePdfApi = () => {
         if (!filename) {
             filename = 'document.pdf'
         } else if (!filename.endsWith('.pdf')) {
-            filename = `${filename}.pdf`
+            filename = `${filename}`
         }
 
         try {
@@ -19,35 +19,16 @@ export const usePdfApi = () => {
             })
             if (!response.ok) throw new Error(`PDF 生成失败: ${response.statusText}`)
 
-            // 从 Content-Disposition 头提取文件名
-            const contentDisposition = response.headers.get('content-disposition')
-            if (contentDisposition) {
-                const filenameMatch = contentDisposition.match(/filename\*?=(?:UTF-8'')?([^;]+)/i)
-                if (filenameMatch) {
-                    filename = decodeURIComponent(filenameMatch[1] as any)
-                }
-            }
+            // API 返回 JSON，包含 PDF 的 URL
+            const result = await response.json()
+            const pdfUrl = result.url
 
-            // 将响应作为 Blob 并在浏览器内置 PDF 查看器中预览
-            const blob = await response.blob()
-            const blobUrl = URL.createObjectURL(blob)
+            if (!pdfUrl) throw new Error('API 未返回 PDF URL')
 
-            // 直接在新标签页打开，浏览器会使用内置 PDF 查看器
-            const previewWindow = window.open(blobUrl, '_blank')
-            if (!previewWindow) {
-                // 如果弹窗被拦截，回退到下载模式
-                const a = document.createElement('a')
-                a.href = blobUrl
-                a.download = filename
-                document.body.appendChild(a)
-                a.click()
-                a.remove()
-            }
+            // 在新窗口直接打开 PDF URL
+            window.open(pdfUrl, '_blank')
 
-            // 延迟清理 Blob URL（等 PDF 加载完成后）
-            setTimeout(() => URL.revokeObjectURL(blobUrl), 60000)
-
-            return blobUrl
+            return pdfUrl
         } catch (err) {
             console.error('err', err)
             throw err
