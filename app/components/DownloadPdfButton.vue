@@ -27,7 +27,7 @@ async function handleExport() {
     try {
         await generatePdf(route.fullPath, `${props.title || 'document'}.pdf`)
     } catch {
-        alert('PDF 导出失败，请稍后重试aaa')
+        alert('PDF 导出失败，请稍后重试')
     } finally {
         loading.value = false
     }

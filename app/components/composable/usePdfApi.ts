@@ -15,7 +15,7 @@ export const usePdfApi = () => {
             const response = await fetch(pdfServiceUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url: targetUrl }),
+                body: JSON.stringify({ url: targetUrl, filename }),
             })
             if (!response.ok) throw new Error(`PDF 生成失败: ${response.statusText}`)
 
@@ -28,11 +28,11 @@ export const usePdfApi = () => {
                 }
             }
 
-            // 将响应作为 Blob 并在窗口中预览
+            // 将响应作为 Blob 并在浏览器内置 PDF 查看器中预览
             const blob = await response.blob()
             const blobUrl = URL.createObjectURL(blob)
 
-            // 在新窗口打开 PDF 预览
+            // 直接在新标签页打开，浏览器会使用内置 PDF 查看器
             const previewWindow = window.open(blobUrl, '_blank')
             if (!previewWindow) {
                 // 如果弹窗被拦截，回退到下载模式
@@ -43,6 +43,9 @@ export const usePdfApi = () => {
                 a.click()
                 a.remove()
             }
+
+            // 延迟清理 Blob URL（等 PDF 加载完成后）
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 60000)
 
             return blobUrl
         } catch (err) {
