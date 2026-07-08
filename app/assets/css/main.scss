@@ -36,10 +36,13 @@ $themes: (
         bg_hover: #e5e7eb,
     ),
     dark: (
-        text_main: #e2e8f0,
-        text-sub: #a0a0a0,
-        bg_color: #0f172a,
-        bg_hover: #334155,
+        text_main: #e8e8ed,
+        text-sub: #a1a1a6,
+        bg_color: #181818,
+        bg_surface: #181818,
+        border: #3a3a3a,
+        bg-muted: #252525,
+        bg_hover: #383838,
     ),
 );
 
@@ -97,7 +100,7 @@ html.dark {
         background-color: theme(bg_hover);
     }
     .modern-link {
-        color: #60a5fa;
+        color: #0a84ff;
         text-decoration: underline;
         text-underline-offset: 2px;
         text-decoration-color: transparent;
@@ -106,7 +109,7 @@ html.dark {
             text-decoration-color 0.15s ease;
     }
     .modern-link:hover {
-        color: #93c5fd;
+        color: #409cff;
         text-decoration-color: currentColor;
     }
 }
@@ -135,7 +138,7 @@ h1 {
 
 h2 {
     margin-block: 16px 8px;
-    border-bottom: 1.5px #e5e5e5 solid;
+    border-bottom: 1.5px theme(border) solid;
     font-size: var(--text-2xl);
     line-height: var(--leading-tight);
     font-weight: 600;

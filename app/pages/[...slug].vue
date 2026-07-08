@@ -57,13 +57,13 @@ watch(() => route.fullPath, load)
     height: 48px;
     border-radius: 50%;
     border: none;
-    background: #3b82f6;
+    background: #0a84ff;
     color: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 4px 12px rgba(10, 132, 255, 0.4);
     transition:
         background 0.2s,
         transform 0.2s;
