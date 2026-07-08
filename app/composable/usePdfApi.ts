@@ -1,8 +1,19 @@
 export const usePdfApi = () => {
-    const pdfServiceUrl = 'http://localhost:5050/api/Pdf/from-url'
-
     const generatePdf = async (pagePath: string, filename?: string) => {
-        const targetUrl = `http://localhost:3000${pagePath}`
+        // 根据 hostname 判断是否线上环境
+        const isProd = typeof window !== 'undefined' && window.location.hostname === 'app.cg37.dev'
+
+        // PDF 服务地址
+        const pdfServiceUrl = isProd
+            ? `${window.location.origin}:5050/api/Pdf/from-url`
+            : 'http://192.168.8.180:5050/api/Pdf/from-url'
+
+        // 目标页面地址：PDF 服务需要能访问到的地址
+        // 本地测试时，使用你本机的局域网 IP（让 PDF 服务能访问到）
+        const targetUrl = isProd ? `${window.location.origin}/api${pagePath}` : `http://192.168.8.220:3000${pagePath}`
+
+        console.log('[PDF] 请求地址:', pdfServiceUrl)
+        console.log('[PDF] 目标 URL:', targetUrl)
 
         // 使用传入的标题作为默认文件名，确保有 .pdf 后缀
         if (!filename) {
@@ -14,7 +25,10 @@ export const usePdfApi = () => {
         try {
             const response = await fetch(pdfServiceUrl, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': 'test-key-123',
+                },
                 body: JSON.stringify({ url: targetUrl, filename }),
             })
             if (!response.ok) throw new Error(`PDF 生成失败: ${response.statusText}`)
@@ -30,7 +44,7 @@ export const usePdfApi = () => {
 
             return pdfUrl
         } catch (err) {
-            console.error('err', err)
+            console.error('[PDF] 导出错误:', err)
             throw err
         }
     }

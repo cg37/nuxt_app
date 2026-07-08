@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { usePdfApi } from '/components/composable/usePdfApi'
+import { usePdfApi } from '@/composable/usePdfApi'
 
 const props = defineProps<{
     title?: string
@@ -27,7 +27,7 @@ async function handleExport() {
     try {
         await generatePdf(route.fullPath, `${props.title || 'document'}.pdf`)
     } catch {
-        alert('PDF 导出失败，请稍后重试')
+        alert('PDF 导出失败，请稍后重试aaa')
     } finally {
         loading.value = false
     }
