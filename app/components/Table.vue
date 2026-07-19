@@ -38,7 +38,7 @@ const WorkInformation = [
     justify-content: center;
 
     .company {
-        flex: 2;
+        flex: 3;
         text-align: left;
     }
     .team {
