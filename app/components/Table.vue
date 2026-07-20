@@ -23,7 +23,7 @@ const WorkInformation = [
     },
     { company: '极氪', team: '数字发展中心', title: '前端开发', timeStart: '2021.09', timeEnd: '2023.10' },
     { company: '华为', team: '华为云 EI产品服务部', title: '前端开发', timeStart: '2023.11', timeEnd: '2025.07' },
-    { company: '美团', team: '闪购技术部', title: '前端开发', timeStart: '2025.07', timeEnd: '2026.07' },
+    { company: '美团', team: '闪购技术部', title: '前端开发', timeStart: '2025.07', timeEnd: null },
 ]
 </script>
 <style lang="scss" scoped>
