@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pnpm *)"
+      "Bash(pnpm *)",
+      "Read(//Users/craj/Code/mdx_pdf/nuxt_app/**)"
     ]
   },
   "$version": 4

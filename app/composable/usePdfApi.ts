@@ -6,11 +6,11 @@ export const usePdfApi = () => {
         // PDF 服务地址
         const pdfServiceUrl = isProd
             ? `${window.location.origin}:5050/api/Pdf/from-url`
-            : 'http://192.168.8.180:5050/api/Pdf/from-url'
+            : 'http://127.0.0.1:5051/api/Pdf/from-url'
 
         // 目标页面地址：PDF 服务需要能访问到的地址
         // 本地测试时，使用你本机的局域网 IP（让 PDF 服务能访问到）
-        const targetUrl = isProd ? `${window.location.origin}/api${pagePath}` : `http://192.168.8.220:3000${pagePath}`
+        const targetUrl = isProd ? `${window.location.origin}/api${pagePath}` : `http://127.0.0.1:3000${pagePath}`
 
         console.log('[PDF] 请求地址:', pdfServiceUrl)
         console.log('[PDF] 目标 URL:', targetUrl)
