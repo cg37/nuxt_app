@@ -38,8 +38,8 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .code-block {
-    padding: 0 18px;
-    overflow-x: auto;
+    padding: 0 8px;
+    overflow-x: display;
     border-radius: 6px;
     border: 1px solid theme(border);
     background-color: theme(bg-muted);

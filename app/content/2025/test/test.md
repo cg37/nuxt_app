@@ -1,10 +1,6 @@
-export const metadata = {
-    title: '笔试测试题',
-}
+给定一个二叉搜索树，实现插入和删除节点的操作
 
-    给定一个二叉搜索树，实现插入和删除节点的操作
-
-```ts
+```typescript
 class TreeNode {
     val: any
     left: TreeNode | null
@@ -75,13 +71,13 @@ class BinaryTree {
 }
 ```
 
-2.  业务场景题业务场景：
+1.  业务场景题业务场景：
     在图书馆管理系统中，每本书都有一个唯一的编号，同时每本书还有借阅次数的记录。
     我们用一个对象数组来表示图书馆当前所有书籍的信息，每个对象包含书的编号和借阅次数。
     现在需要找出借阅次数最多的前 k 本书的编号。 - 问题：给定一个对象数组，每个对象有 bookId（书的编号）和 borrowCount（借阅次数）两个属性，
     以及一个整数 k，返回借阅次数最多的前 k 本书的编号数组。
 
-```ts
+```typescript
 interface Book {
     bookId: string | number
     borrowCount: number
