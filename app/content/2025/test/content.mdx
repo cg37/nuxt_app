@@ -1,0 +1,113 @@
+export const metadata = {
+    title: '笔试测试题',
+}
+
+## 算法题
+
+    给定一个二叉搜索树，实现插入和删除节点的操作
+
+```ts
+class TreeNode {
+    val: any
+    left: TreeNode | null
+    right: TreeNode | null
+
+    constructor(val: any) {
+        this.val = val
+        this.left = null
+        this.right = null
+    }
+}
+
+class BinaryTree {
+    root: TreeNode | null
+
+    constructor() {
+        this.root = null
+    }
+
+    insert(val: any) {
+        const newNode = new TreeNode(val)
+        if (!this.root) {
+            this.root = newNode
+            return
+        }
+        let current = this.root
+        while (true) {
+            if (val < current.val) {
+                if (!current.left) {
+                    current.left = newNode
+                    return
+                }
+                current = current.left
+            } else {
+                if (!current.right) {
+                    current.right = newNode
+                    return
+                }
+                current = current.right
+            }
+        }
+    }
+
+    delete(val: number): void {
+        this.root = this._deleteNode(this.root, val)
+    }
+
+    // 内部递归实现
+    private _deleteNode(node: TreeNode | null, val: number): TreeNode | null {
+        if (node === null) {
+            return null
+        }
+        if (val < node.val) {
+            node.left = this._deleteNode(node.left, val)
+        } else if (val > node.val) {
+            node.right = this._deleteNode(node.right, val)
+        } else {
+            if (node.left === null) {
+                return node.right
+            }
+            if (node.right === null) {
+                return node.left
+            }
+            let successor = node.right
+            while (successor.left !== null) {
+                successor = successor.left
+            }
+            node.val = successor.val
+            node.right = this._deleteNode(node.right, successor.val)
+        }
+        return node
+    }
+}
+```
+
+2.  业务场景题业务场景：
+    在图书馆管理系统中，每本书都有一个唯一的编号，同时每本书还有借阅次数的记录。
+    我们用一个对象数组来表示图书馆当前所有书籍的信息，每个对象包含书的编号和借阅次数。
+    现在需要找出借阅次数最多的前 k 本书的编号。 - 问题：给定一个对象数组，每个对象有 bookId（书的编号）和 borrowCount（借阅次数）两个属性，
+    以及一个整数 k，返回借阅次数最多的前 k 本书的编号数组。
+
+```ts
+interface Book {
+    bookId: string | number
+    borrowCount: number
+}
+
+function getTopKBooksSort(books: Book[], k: number): (string | number)[] {
+    if (k <= 0) return []
+    if (k >= books.length) return books.map((book) => book.bookId)
+
+    return [...books]
+        .sort((a, b) => {
+            // 优先按借阅次数降序排列
+            if (b.borrowCount !== a.borrowCount) {
+                return b.borrowCount - a.borrowCount
+            }
+            // 借阅次数相同，按 bookId 升序排列
+            return String(a.bookId).localeCompare(String(b.bookId))
+        })
+        .slice(0, k)
+        .map((book) => book.bookId)
+}
+```
