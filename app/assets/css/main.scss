@@ -151,6 +151,17 @@ h3 {
     font-weight: 500;
 }
 
+/* Inline code (not inside pre/code-block) */
+:not(pre):not(.code-block-pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: theme(bg-muted);
+    color: theme(text_main);
+    border: 1px solid theme(border);
+}
+
 h4 {
     margin-block: 16px 8px;
     font-size: var(--text-xl);
