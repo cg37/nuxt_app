@@ -1,0 +1,139 @@
+export const metadata = {
+    title: 'Resume (English)',
+    titleEng: 'resumeForPrintEn',
+    hideTitle: true,
+}
+import Table from '/components/Table.vue'
+
+## Contact
+
+Phone: 15958040921
+
+Email: CG37@outlook.com
+
+WeChat: CraigC37
+
+## Personal Info
+
+Chen Gang / Male / 1997
+
+B.Eng. Measurement & Control Technology / CET 6
+
+Zhejiang University of Technology, 2015–2019
+
+## Skills
+
+- Proficient in `HTML5/CSS3` — responsive layouts, `Flex/Grid`, animations
+- Strong `JavaScript` fundamentals — `ES6+`, closures, prototype chain, async programming
+- Proficient in `Vue 3` ecosystem (`Pinia` / `Vue Router`), Composition API and reactivity; hands-on experience with `Nuxt`
+- Familiar with `React` ecosystem (`Hooks` / `Redux`) and `React Native` cross-platform development
+- Experienced with `Vite` for build tooling and performance optimization
+- Published and maintained `NPM` packages and `VS Code` extensions
+- Familiar with `C#/.NET` backend development and full-stack collaboration
+- Proficient in `Git` version control and `Git Flow`; experienced in setting up `GitHub Actions` `CI/CD` pipelines
+- Practiced `Spec Coding` and proficient with mainstream `AI Agent` tools to accelerate development
+
+## Work Experience
+
+<Table />
+
+## Project Experience
+
+### Meituan — QianNiuHua PMS Platform (Flash Purchase)
+
+QianNiuHua is the core operations management system for Meituan's flash purchase business, supporting merchant operations, product management and data analytics.
+
+Tech Stack: `React` + `Vite` + `TypeScript`
+
+#### Responsibilities
+
+- Designed a factory-pattern list page component library in `React`, encapsulating filters, tables, pagination and shared capabilities; managed state via `Provider` + multi-level `Context` with bidirectional URL sync and multi-tab state isolation
+- Built business component library (supplier selector, store selector, product info display, etc.) on top of internal foundation library `@roo/roo`, ensuring consistent UX
+- Implemented tenant-level differential rendering for multi-tenant and canary release scenarios
+
+### Meituan — MRN Mobile Engineering (Flash Purchase)
+
+QianNiuHua App is a mobile procurement tool built on Meituan's `MRN` (`React Native`) platform, covering the full procurement chain with a multi-`Bundle` architecture for independent module packaging and release.
+
+Tech Stack: `React Native` + `TypeScript` + `@mrn/react-navigation` + `jotai` + `ahooks`
+
+#### Responsibilities
+
+- Consolidated and refactored 4 core procurement `Bundle`s from scratch — directory structure, routing, service layer, state management and page component拆分 — ensuring `Bundle` independence
+- Built reusable layout components on top of internal libraries `@sfe/wand-rn` and `@sgfe/flower-rn`, using `HOC` patterns to uniformly handle analytics, permission checks and business configuration cross-cutting concerns
+- Established a three-layer safeguard (`ESLint` rules + `MR` templates + `CI` gates) to prevent unsafe numeric operations and eliminate floating-point precision risks
+
+### Huawei Cloud — Data Asset Platform (EI Product Division)
+
+A data platform supporting large-model training with hundreds of billions of parameters, providing multi-modal asset management (text/video/structured data).
+
+Tech Stack: `Vue 3` + `Vue Router` + `Vite` + `TypeScript` + `ECharts 5`
+
+#### Responsibilities
+
+- Developed a PB-scale multi-modal data preview system using virtual scrolling and chunked loading for intelligent video segmentation and dynamic text pagination; implemented multi-dimensional asset search
+- Built data asset visualization dashboards with `ECharts 5`, extending and encapsulating chart components
+- Built data processing task pipelines for import/export/update workflows on the asset platform, with real-time progress visualization and detail views
+- Frontend engineering: optimized `Vite` bundle size and pipeline build speed; established `ESLint` + `Prettier` + `Husky` code standards integrated into `CI/CD` for automated deployment
+- Explored `Tauri 2.0` adoption, reducing installer size by **65%** compared to `Electron`
+
+### Huawei Cloud — Embodied Simulation Platform (EI Product Division)
+
+A robotic arm simulation and control system for embodied AI scenarios, supporting script orchestration, task execution, real-time status monitoring and high-precision calibration.
+
+Tech Stack: `Vue 3` + `NoVNC` + `WebSocket`
+
+#### Responsibilities
+
+- Built standardized frontend scaffolding from scratch, unifying dependency and build configuration
+- Established a real-time `VNC` transmission pipeline from server to frontend, optimizing `NoVNC` to reduce bandwidth usage by 70%
+- Developed highly reusable business components (script editor, status monitoring panel, etc.), standardizing interaction patterns and significantly improving team development efficiency and code reuse
+
+## Personal Projects
+
+### nuxt-mdx (Personal Documentation Site)
+
+A personal tech blog built with `Vue 3` + `Nuxt`, leveraging `Composition API` for reusable logic and custom components for `MDX` content rendering.
+The styling layer uses `SCSS` preprocessing to build a design system with auto-generated light/dark theme CSS variables,
+unified design tokens for visual consistency, responsive typography, and `@media print` styles for PDF export.
+Built with `Vite` + `TypeScript` + `ESLint`/`Prettier`.
+
+- [GitHub](https://github.com/cg37/nuxt_pdf)
+
+### PlayWrightPdfService (End-to-End PDF Generation Infrastructure)
+
+A complete PDF generation solution covering backend service, frontend SDK, secure authentication and containerized deployment.
+Backend powered by `.NET 10` + `Playwright` rendering engine.
+Deployed in `Docker` containers, exposed to the public internet with zero attack surface via `Cloudflare Zero Trust` (Access + Tunnel),
+with `API Key` as a secondary authentication layer.
+
+- [GitHub](https://github.com/cg37/PlayWrightPdfService)
+
+### natural2bash (Natural Language to Bash)
+
+An AI-powered CLI tool that converts natural language descriptions (Chinese/English) into executable `Bash` commands.
+Built with `Node.js`, using `Chalk` + `Ora` for polished terminal UX.
+Features automated `GitHub Actions` release pipeline: push triggers multi-version `Node.js` (18.x / 20.x / 22.x) `CI` testing,
+and `GitHub Release` triggers automated `npm` publishing via `CD`.
+
+- [GitHub](https://github.com/cg37/natural2bash)
+
+### FluxChat
+
+A `Vue 3`-based `ChatGPT` client. Uses `SSE` protocol for streaming output via `@microsoft/fetch-event-source`,
+parsing `OpenAI` data streams token-by-token for real-time incremental UI rendering with a typewriter effect.
+Features intelligent auto-scroll with user interaction detection: the chat area auto-follows during AI output;
+user touch or scroll pauses auto-scroll to avoid disrupting reading, then resumes when interaction ends,
+improving readability and control for long-form conversations.
+
+- [GitHub](https://github.com/cg37/FluxChat)
+
+## Summary
+
+5+ years of frontend development experience, deeply involved in B2B management platforms, data visualization dashboards, and cross-platform mobile app development and refactoring.
+
+Independently developed and published productivity tools including `NPM` packages, `VS Code` extensions, `CLI` tools, and desktop applications (`Tauri` / `Swift`).
+
+Proficient in setting up `CI/CD` automation pipelines; led frontend code quality gates, reusable component library development and bundle size optimization to improve team efficiency.
+
+Comfortable reading first-hand English technical documentation; actively embracing `AI Agent` tools and `Spec Coding` practices to drive technical implementation and independent problem-solving.
