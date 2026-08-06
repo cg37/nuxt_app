@@ -38,7 +38,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .code-block {
-    padding: 0 8px;
+    padding: 0;
     overflow-x: display;
     border-radius: 6px;
     border: 1px solid theme(border);

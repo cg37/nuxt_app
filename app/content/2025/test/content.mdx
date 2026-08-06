@@ -5,10 +5,10 @@ export const metadata = {
     给定一个二叉搜索树，实现插入和删除节点的操作
 
 ```ts
-class TreeNode {
+class TN {
     val: any
-    left: TreeNode | null
-    right: TreeNode | null
+    left: TN | null
+    right: TN | null
     constructor(val: any) {
         this.val = val
         this.left = null
@@ -17,12 +17,12 @@ class TreeNode {
 }
 
 class BinaryTree {
-    root: TreeNode | null
+    root: TN | null
     constructor() {
         this.root = null
     }
     insert(val: any) {
-        const newNode = new TreeNode(val)
+        const newNode = new TN(val)
         if (!this.root) {
             this.root = newNode
             return
@@ -48,7 +48,7 @@ class BinaryTree {
     delete(val: number): void {
         this.root = this._deleteNode(this.root, val)
     }
-    private _deleteNode(node: TreeNode | null, val: number): TreeNode | null {
+    private _deleteNode(node: TN | null, val: number): TN | null {
         if (node === null) {
             return null
         }
