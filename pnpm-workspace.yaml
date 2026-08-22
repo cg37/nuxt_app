@@ -1,7 +1,12 @@
+allowBuilds:
+    '@ceereals/vue-pdf': true
+    '@parcel/watcher': true
+    core-js: true
+    esbuild: true
 ignoredBuiltDependencies:
-  - '@ceereals/vue-pdf'
-  - '@parcel/watcher'
-  - core-js
-  - esbuild
+    - '@ceereals/vue-pdf'
+    - '@parcel/watcher'
+    - core-js
+    - esbuild
 overrides:
-  '@craig37/lint-config': link:../../.local/share/pnpm/global/5/node_modules/@craig37/lint-config
+    '@craig37/lint-config': link:../../.local/share/pnpm/global/5/node_modules/@craig37/lint-config
