@@ -6,9 +6,9 @@
 
 <script lang="ts" setup>
 import { MDXProvider } from '@mdx-js/vue'
-import CustomLink from '/components/CustomLink.vue'
-import CustomH1 from '/components/mdxComponent/CustomH1'
-import CodeBlock from '/components/mdxComponent/CodeBlock'
+import CustomLink from './components/CustomLink.vue'
+import CustomH1 from './components/mdxComponent/CustomH1.vue'
+import CodeBlock from './components/mdxComponent/CodeBlock.vue'
 
 const mdxComponents = {
     a: CustomLink,
