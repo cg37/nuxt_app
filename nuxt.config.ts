@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 import mdx from '@mdx-js/rollup'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { visualizer } from 'rollup-plugin-visualizer'
+import rehypeCodeMeta from './mdx-plugins/rehype-code-meta.mjs'
 
 const srcDir = fileURLToPath(new URL('./app', import.meta.url))
 
@@ -19,7 +20,8 @@ export default defineNuxtConfig({
 
     modules: ['@nuxtjs/color-mode'],
     colorMode: {
-        preference: 'reference',
+        // 'system' 才是合法值：跟随系统（深/浅色）偏好；'reference' 会被当成字面量导致 html 类名错乱
+        preference: 'system',
         fallback: 'light',
         classSuffix: '',
         storage: 'cookie',
@@ -36,6 +38,7 @@ export default defineNuxtConfig({
                 ...mdx({
                     jsx: true,
                     providerImportSource: '@mdx-js/vue',
+                    rehypePlugins: [rehypeCodeMeta],
                 }),
                 enforce: 'pre',
             },
@@ -53,15 +56,13 @@ export default defineNuxtConfig({
 
     // 👇 新增：使用 Nuxt Hooks 精准注入 Visualizer 插件
     hooks: {
-        'vite:extendConfig'(config, { isClient, isServer, isBuild }) {
+        'vite:extendConfig'(config, { isClient, isServer }) {
             // 只在生产构建(build)时启用，且可通过环境变量控制
-            if (!isBuild || !isAnalyze) return
-
-            config.plugins = config.plugins || []
+            if (!isAnalyze) return
 
             if (isClient) {
                 // 客户端构建分析（前端首屏体积，最值得关注）
-                config.plugins.push(
+                config?.plugins?.push(
                     visualizer({
                         open: true, // 构建完成后自动在浏览器打开
                         filename: 'client-stats.html', // 客户端报告文件名
@@ -75,7 +76,7 @@ export default defineNuxtConfig({
 
             if (isServer) {
                 // 服务端构建分析（Node.js 运行时的体积）
-                config.plugins.push(
+                config?.plugins?.push(
                     visualizer({
                         open: false, // 服务端报告通常不需要自动打开
                         filename: 'server-stats.html', // 服务端报告文件名
