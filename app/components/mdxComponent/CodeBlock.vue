@@ -4,9 +4,8 @@
             <span v-if="title" class="code-block-filename">{{ title }}</span>
             <span v-else class="code-block-lang">{{ langType }}</span>
         </div>
-        <pre class="code-block">
-        <code ref="codeRef" class="code-block-inner"><slot /></code>
-    </pre>
+        <!-- 注意：pre 内的空白会被保留为文本节点并渲染成空行，必须写在同一行 -->
+        <pre class="code-block"><code ref="codeRef" class="code-block-inner"><slot /></code></pre>
     </div>
 </template>
 
@@ -37,7 +36,8 @@ function extractSource() {
     const classList = langCode?.className || ''
     const match = classList.match(/language-([\w-]+)/)
     langType.value = match?.[1] ?? 'text'
-    code = langCode?.textContent || el.textContent || ''
+    // 去掉末尾换行：mdast 会在代码后追加 \n，导致 Shiki 多生成一个空行（底部留白）
+    code = (langCode?.textContent || el.textContent || '').replace(/\n+$/, '')
     // 文件名优先级：传入的 filename prop > MDX meta 解析出的 data-file > 空（空则展示语言）
     title.value = props.filename ?? langCode?.getAttribute('data-file') ?? ''
 }
@@ -104,7 +104,8 @@ onMounted(() => {
 }
 
 .code-block {
-    padding: 0 0 0 12px;
+    padding: 18px 0 18px 12px;
+
     margin: 0;
     // 原 overflow-x: display 是非法值，改为 auto 让长行可横向滚动
     overflow-x: auto;
@@ -114,6 +115,8 @@ onMounted(() => {
 }
 
 .code-block-inner {
+    // 必须是 block，否则 inline 元素会在 <pre> 里额外撑出行盒，产生上下大段空白
+    display: block;
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     background: transparent;
