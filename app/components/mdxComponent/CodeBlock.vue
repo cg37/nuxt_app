@@ -72,12 +72,12 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .code-block-container {
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
     border-radius: 6px;
     // theme() 只在 main.scss 里可用；组件内直接用全局 CSS 变量
     border: 1px solid var(--color-border);
     background-color: var(--color-bg-muted);
-    overflow: hidden;
+    overflow: auto;
 }
 
 .code-block-header {
@@ -104,46 +104,13 @@ onMounted(() => {
 }
 
 .code-block {
-    padding: 0;
+    padding: 0 0 0 12px;
     margin: 0;
     // 原 overflow-x: display 是非法值，改为 auto 让长行可横向滚动
     overflow-x: auto;
     border-radius: 0;
     border: none;
     background: transparent;
-
-    // 现代化滚动条 — 半透明悬浮感
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
-    transition: scrollbar-color 0.3s ease;
-
-    &:hover {
-        scrollbar-color: rgba(128, 128, 128, 0.3) transparent;
-    }
-
-    &::-webkit-scrollbar {
-        height: 4px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: transparent;
-        margin: 0 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: transparent;
-        border-radius: 10px;
-        transition: background 0.3s ease;
-    }
-
-    &:hover::-webkit-scrollbar-thumb {
-        background: rgba(128, 128, 128, 0.35);
-        box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.1);
-    }
-
-    &:hover::-webkit-scrollbar-thumb:hover {
-        background: rgba(128, 128, 128, 0.55);
-    }
 }
 
 .code-block-inner {
